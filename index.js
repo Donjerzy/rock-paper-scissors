@@ -46,3 +46,31 @@ function playRound(playerSelection, computerSelection) {
     
     return statement;
 }
+
+function playGame() {
+    let playerScore = 0;
+    let computerScore = 0;
+
+    while ((playerScore + computerScore) < 5) {
+        const playerChoice = prompt('Rock, Paper, Scissors, Shoot!');
+        const computerChoice = getComputerChoice();
+        const result = playRound(playerChoice, computerChoice);
+        console.log(result);
+        if (result.startsWith('You win')) {
+            playerScore += 1;
+        } else if (result.startsWith('You lose')) {
+            computerScore +=1;
+        }
+        console.log(`You: ${playerScore} - The computer: ${computerScore} `)
+    }
+
+    if(playerScore > computerScore) {
+        console.log(`You win ${playerScore} - ${computerScore}`);
+    } else {
+        console.log(`You lose ${playerScore} - ${computerScore}`);
+    }
+
+    return;
+}
+
+playGame();
