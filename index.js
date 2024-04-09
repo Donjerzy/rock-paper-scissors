@@ -14,7 +14,7 @@ function playRound(playerSelection, computerSelection) {
                 statement = 'A draw you both chose paper'
             } else if (player === 'scissors') {
                 statement =  `You win, the computer chose ${computerSelection}`
-            } else {
+            } else if (player === 'rock') {
                 statement =  `You lose, the computer chose ${computerSelection}`
             }
             break;
@@ -24,7 +24,7 @@ function playRound(playerSelection, computerSelection) {
                 statement = 'A draw you both chose scissors'
             } else if (player === 'rock') {
                 statement =  `You win, the computer chose ${computerSelection}`
-            } else {
+            } else if (player === 'paper') {
                 statement =  `You lose, the computer chose ${computerSelection}`
             }
             break;
@@ -34,9 +34,13 @@ function playRound(playerSelection, computerSelection) {
                 statement = 'A draw you both chose rock'
             } else if (player === 'paper') {
                 statement =  `You win, the computer chose ${computerSelection}`
-            } else {
+            } else if (player === 'scissors') {
                 statement =  `You lose, the computer chose ${computerSelection}`
             }
+            break;
+
+        default:
+            statement = `What did you pick again?!`
             break;
     }
     
