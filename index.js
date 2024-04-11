@@ -1,3 +1,23 @@
+let computerScore = 0;
+let playerScore = 0;
+let total = 0;
+let gameOver = false;
+const rock = document.querySelector("#rock");
+const paper = document.querySelector("#paper");
+const scissors = document.querySelector("#scissors");
+const computerScoreDisplay = document.querySelector(".cpu-score")
+const playerScoreDisplay = document.querySelector(".user-score")
+const gameAlert = document.querySelector('.alert');
+const title = document.querySelector('.title');
+const scoreSection = document.querySelector('.score');
+const buttonSection = document.querySelector('.action-buttons');
+
+
+computerScoreDisplay.textContent = `${computerScore}`
+playerScoreDisplay.textContent = `${playerScore}`
+
+
+
 function getComputerChoice() {
     const choices = ['rock', 'paper', 'scissors'];
     const chosen = choices[Math.floor(Math.random() * 3)];
@@ -47,30 +67,73 @@ function playRound(playerSelection, computerSelection) {
     return statement;
 }
 
-function playGame() {
-    let playerScore = 0;
-    let computerScore = 0;
-
-    while ((playerScore + computerScore) < 5) {
-        const playerChoice = prompt('Rock, Paper, Scissors, Shoot!');
-        const computerChoice = getComputerChoice();
-        const result = playRound(playerChoice, computerChoice);
-        console.log(result);
+function gameLogic(result) {    
         if (result.startsWith('You win')) {
             playerScore += 1;
+            total += 1;
+            playerScoreDisplay.textContent = `${playerScore}`
+            gameAlert.textContent = `${result}`;
+            gameAlert.setAttribute('style', "background-color: green; color: white;")
         } else if (result.startsWith('You lose')) {
             computerScore +=1;
+            total += 1;
+            computerScoreDisplay.textContent = `${computerScore}`
+            gameAlert.textContent = `${result}`;
+            gameAlert.setAttribute('style', "background-color: red; color: white;")
+        } else {
+            gameAlert.textContent = `${result}`;
+            gameAlert.setAttribute('style', "background-color: yellow; color: black;")
         }
-        console.log(`You: ${playerScore} - The computer: ${computerScore} `)
-    }
+    return;   
+}
 
+
+function gameOverFun () { 
+    gameOver = true;
     if(playerScore > computerScore) {
-        console.log(`You win ${playerScore} - ${computerScore}`);
+        gameAlert.textContent = "";
+        gameAlert.style.backgroundColor = 'green'; 
+        title.setAttribute('style', 'text-align: center; color:green;');
+        title.textContent = "You won";
+        scoreSection.innerHTML = `<div style="width:fit-content; margin-left:auto; margin-right:auto;"><p>You: ${playerScore} - ${computerScore} :The Computer</p></div>`;
+        buttonSection.innerHTML = `<p style="width:fit-content; margin-left:auto; margin-right:auto;">Refresh to play again!</p>`
     } else {
-        console.log(`You lose ${playerScore} - ${computerScore}`);
-    }
-
+        gameAlert.textContent = "";
+        gameAlert.style.backgroundColor = 'red'; 
+        title.setAttribute('style', 'text-align: center; color:red;');
+        title.textContent = "You Lost";
+        scoreSection.innerHTML = `<div style="width:fit-content; margin-left:auto; margin-right:auto;"><p>You: ${playerScore} - ${computerScore} :The Computer</p></div>`;
+        buttonSection.innerHTML = `<p style="width:fit-content; margin-left:auto; margin-right:auto;">Refresh to play again!</p>`
+    } 
     return;
 }
 
-playGame();
+rock.addEventListener('click', ()=> {
+    if(!gameOver) {
+        const pcChoice = getComputerChoice();
+        gameLogic(playRound('rock', pcChoice));
+        if (total === 5) {
+            gameOverFun();
+        }
+    }
+});
+
+paper.addEventListener('click', ()=> {
+    if(!gameOver) {
+        const pcChoice = getComputerChoice();
+        gameLogic(playRound('paper', pcChoice));
+        if (total === 5) {
+            gameOverFun();
+        }
+    }  
+});
+
+scissors.addEventListener('click', ()=> {
+    if(!gameOver) {
+        const pcChoice = getComputerChoice();
+        gameLogic(playRound('scissors', pcChoice));
+        if (total === 5) {
+            gameOverFun();
+        }
+    }
+});
