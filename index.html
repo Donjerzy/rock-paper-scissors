@@ -4,32 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
-    <script defer ="./index.js"></script>
+    <script defer src="./index.js"></script>
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
     <div class="content">
-        <h1>Rock Paper Scissors</h1>
+        <div style="padding: 4px;" class="alert"></div>
+        <h1 class="title">Rock Paper Scissors</h1>
         <div class="score">
-            <div class="comp">
-                <p>The Computer</p>
-                <p class="cpu-score">0</p>
-            </div>
             <div class="user">
                 <p> You</p>
-                <p class="user-score">0</p>
+                <p class="user-score"></p>
+            </div>
+            <div class="comp">
+                <p>The Computer</p>
+                <p class="cpu-score"></p>
             </div>
         </div>
         <div class="action-buttons">
-            <button>
+            <button id="rock">
                 <img class="button-icon" src="./icons/rock.svg" alt="rock icon">
                 rock
             </button>
-            <button>
+            <button id="paper">
                 <img class="button-icon" src="./icons/paper.svg" alt="paper icon">
                 paper
             </button>
-            <button>
+            <button id="scissors">
                 <img class="button-icon" src="./icons/scissors.svg" alt="scissors icon">
                 scissors
             </button>
